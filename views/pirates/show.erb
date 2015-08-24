@@ -1,7 +1,22 @@
-<h1>Display your Pirate here</h1>
+<head>Welcome to the Nested Forms Lab!</head>
+<div>
+<a href="/new">
+          let's navigate to the '/new'
+        </a>
+      </div>
+
+<h1>Pirate Name = <%= @pirate["name"] %></h1>
+<p>Pirate Weight = <%= @pirate["weight"] %></p>
+<p>Pirate Height = <%= @pirate["height"] %></p>
 
 
-<h2>Display your first ship here</h2>
+<h2>Ship 1 Name = <%= @pirate["ships"]["0"]["name"] %></h2>
+<p>Ship 1 Type = <%= @pirate["ships"]["0"]["type"] %></p>
+<p>Ship 1 Booty = <%= @pirate["ships"]["0"]["booty"] %></p>
 
 
-<h2>Display your second ship here</h2>
+<h2>Ship 2 Name = <%= @pirate["ships"]["1"]["name"] %></h2>
+<p>Ship 2 Type = <%= @pirate["ships"]["1"]["type"] %></p>
+<p>Ship 2 Booty = <%= @pirate["ships"]["1"]["booty"] %></p>
+
+
