@@ -1,1 +1,26 @@
-<h1>Make your form here</h1>
+<h1>Add a new Pirate</h1>
+<form action="/pirates" method="POST">
+  <fieldset>
+  	<legend>Pirate:</legend>
+    <label>Name: </label><input name="pirate[name]"><br>
+    <label>Weight: </label><input name="pirate[weight]"><br>
+    <label>Height: </label><input name="pirate[height]"><br>
+  </fieldset>
+  <% 2.times do |i| %>
+    <fieldset>
+  	  <legend>
+  	  	<% if i == 0 %>
+  	      First Ship:
+        <% elsif i == 1 %>
+          Second Ship:
+        <% else %>
+          Unknown Ship:
+        <% end %>    
+      </legend>
+      <label>Name: </label><input name="pirate[ships][<%= i %>][name]"><br>
+      <label>Type: </label><input name="pirate[ships][<%= i %>][ship_type]"><br>
+      <label>Booty: </label><input name="pirate[ships][<%= i %>][booty]"><br>
+    </fieldset>
+  <% end %>
+  <input type="submit" value="Submit">
+</form>
