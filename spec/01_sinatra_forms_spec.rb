@@ -36,19 +36,22 @@ describe "FormsLab::App" do
 
     it "renders the first ship's input fields for the name, type, and booty attributes on the page" do
       expect(last_response.body).to include("pirate[ships][0][name]")
-      expect(last_response.body).to include("pirate[ships][0][type]")
+      expect(last_response.body).to include("pirate[ships][0][ship_type]")
       expect(last_response.body).to include("pirate[ships][0][booty]")
     end
 
     it "renders the second ship's input field for the name, type, and booty attributes on the page" do
       expect(last_response.body).to include("pirate[ships][1][name]")
-      expect(last_response.body).to include("pirate[ships][1][type]")
+      expect(last_response.body).to include("pirate[ships][1][ship_type]")
       expect(last_response.body).to include("pirate[ships][1][booty]")
     end
   end
 
   describe "POST '/pirates'" do
     before do
+      Pirate.destroy_all
+      Ship.destroy_all
+
       post '/pirates', {
         "pirate"=> {
           "name"=>"Ian",
@@ -57,11 +60,11 @@ describe "FormsLab::App" do
           "ships"=> {
           "0"=> {
             "name"=>"Titanic",
-            "type"=>"Steam Liner",
+            "ship_type"=>"Steam Liner",
             "booty"=>"Silver"},
           "1"=> {
             "name"=> "Carpathia",
-            "type"=>"Rescue Ship",
+            "ship_type"=>"Rescue Ship",
             "booty"=>"Inner Tubes"
           }
         }
@@ -90,5 +93,25 @@ describe "FormsLab::App" do
       expect(last_response.body).to include("Rescue Ship")
       expect(last_response.body).to include("Inner Tubes")
     end
+
+    it "persists changes" do
+      expect(Pirate.count).to eq(1)
+      expect(Ship.count).to eq(2)
+
+      pirate = Pirate.find_by(name: "Ian")
+      expect(pirate).not_to be_nil
+
+      ship1 = Ship.find_by(name: "Titanic")
+      expect(ship1).not_to be_nil
+
+      ship2 = Ship.find_by(name: "Carpathia")
+      expect(ship2).not_to be_nil
+
+      expect(ship1.pirate).to eq(pirate)
+      expect(ship2.pirate).to eq(pirate)
+
+      expect(pirate.ships).to include(ship1 && ship2)
+    end
+
   end
 end
