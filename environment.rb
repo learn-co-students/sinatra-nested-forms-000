@@ -7,3 +7,4 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 
 require './app'
+Dir["./models/*.rb"].each {|model| require model }
