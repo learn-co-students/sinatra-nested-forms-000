@@ -1,1 +1,27 @@
 <h1>Make your form here</h1>
+
+<form action='/pirates' method="POST">
+<input type="submit" value="Submit">
+  <table class='table table-striped'>
+    <tr>
+  <td>Pirate</td>
+  <td><input type= "text" name="pirate[name]" value= "name" /></td>
+  <td><input type= "text" name="pirate[weight]" value= "weight"/></td>
+  <td><input type= "text" name="pirate[height]" value= "height"/></td>
+</tr>
+<tr>
+  <td>First Ship</td>
+  <td><input type= "text" name="pirate[ships][0][name]"value= "name" /></td>
+  <td><input type= "text" name="pirate[ships][0][type]" value= "type"/></td>
+  <td><input type= "text" name="pirate[ships][0][booty]"value= "booty" /></td>
+</tr>
+<tr>
+  <td>Second Ship</td>
+   <td><input type= "text" name="pirate[ships][1][name]" value= "name"/></td>
+  <td><input type= "text" name="pirate[ships][1][type]" value= "type"/></td>
+  <td><input type= "text" name="pirate[ships][1][booty]" value= "booty"/></td>
+  
+  </tr>
+  </table>
+
+</form>
