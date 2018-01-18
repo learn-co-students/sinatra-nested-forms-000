@@ -75,6 +75,8 @@ describe "FormsLab::App" do
     end
 
     it "returns a 200 status code" do
+      puts '==========='
+      puts last_response.body
       expect(last_response.status).to eq(200)
     end
 
